@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Med-Alert</title>
+    <link rel="stylesheet" href="style.css"/>
+    <script src="app.js"></script>
+</head>
+<body>
+    <!--EMERGENCY PAGE-->
+
+    <div id="emergency">
+        <div class="emer-header">
+        <div class="sos"></div>
+        <div>
+            <h1>Emergency Medical Info</h1>
+            <p>Show to medical personnel immediately</p>
+        </div>
+        </div>
+        <div class="emer-body">
+        <div class="patient">
+            <div class="pname" id="e-name"></div>
+            <div class="pills" id="e-pills"></div>
+        </div>
+        <div id="e-medical"></div>
+        <div class="contacts-title">Emergency Contacts</div>
+        <div id="e-contacts"></div>
+        <div class="golden-hour">Golden Hour — "Every seconds counts."</div>
+        </div>
+    </div>
+
+    <!--MAIN PAGE-->
+
+    <div id="app" class="wrap">
+        <div class="header">
+        <h1>Med-Alert</h1>
+        <p>Emergency QR — Complete info on single scan</p>
+    </div>
+        
+    <!-- Step indicator -->
+    <div class="steps" id="steps">
+        <div class="step active" id="s0">Personal</div>
+        <div class="step" id="s1">Medical</div>
+        <div class="step" id="s2">Contacts</div>
+    </div>
+
+    <!--Step 0:Personal Info-->
+    <div id="step0" class="card">
+        <h2>Personal Info</h2>
+        <div class="field">
+            <label>Full Name *</label>
+            <input id="name" placeholder="Arjun Sharma"/>
+        </div>
+        <div class="row">
+            <div class="field">
+                <label>Age</label>
+                <input id="age" type="number" placeholder="28"/>
+            </div>
+            <div class="field">
+                <label>Blood Group *</label>
+                <select id="blood">
+                    <option value="">Select</option>
+                    <option>A+</option><option>A-</option>
+                    <option>B+</option><option>B-</option>
+                    <option>AB+</option><option>AB-</option>
+                    <option>O+</option><option>O-</option>
+                </select>
+            </div>
+        </div>
+        <div class="btns">
+            <button class="btn btn-next" style="flex:1" onclick="goStep(1)">Next →</button>
+        </div>
+    </div>
+
+    <!--Step 1:Medical Info-->
+    <div id="step1" class="card" style="display:none">
+      <h2>Medical Info</h2>
+      <div class="field">
+        <label>Allergies</label>
+        <input id="allergies" placeholder=" "/>
+      </div>
+      <div class="field">
+        <label>Medications</label>
+        <input id="meds" placeholder=" "/>
+      </div>
+      <div class="field">
+        <label>Conditions</label>
+        <div class="chips" id="cond-chips"></div>
+      </div>
+      <div class="field">
+        <label>Notes</label>
+        <textarea id="notes" rows="2" placeholder=" "></textarea>
+      </div>
+      <div class="btns">
+        <button class="btn btn-back" onclick="goStep(0)">← Back</button>
+        <button class="btn btn-next" style="flex:2" onclick="goStep(2)">Next →</button>
+      </div>
+    </div>
+
+    <!--Step 2:Emergency Contacts-->
+    <div id="step2" class="card" style="display:none">
+      <h2>Emergency Contacts</h2>
+      <div class="contact-box">
+        <div class="clabel">Contact 1</div>
+        <div class="row">
+          <div class="field"><label>Name</label><input id="c1name" placeholder=" "/></div>
+          <div class="field"><label>Phone</label><input id="c1phone" type="tel" placeholder=" "/></div>
+        </div>
+      </div>
+      <div class="contact-box">
+        <div class="clabel">Contact 2</div>
+        <div class="row">
+          <div class="field"><label>Name</label><input id="c2name" placeholder=" "/></div>
+          <div class="field"><label>Phone</label><input id="c2phone" type="tel" placeholder=" "/></div>
+        </div>
+      </div>
+      <div class="btns">
+        <button class="btn btn-back" onclick="goStep(1)">← Back</button>
+        <button class="btn btn-gen" onclick="generateQR()">Generate QR</button>
+      </div>
+    </div>
+
+    <!-- Step 3: QR Done -->
+    <div id="qr-done" class="card">
+      <h2>QR Ready!</h2>
+      <p>Use your mobile camera to scan → Get direct info.</p>
+      <div id="qrcode"></div>
+      <div>
+        <button class="dl-btn"  onclick="downloadQR()">Download</button>
+        <button class="edit-btn" onclick="goStep(0)">Edit</button>
+      </div>
+    </div>
+</body>
+</html>
